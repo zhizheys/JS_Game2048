@@ -1,0 +1,68 @@
+
+
+#game_container{
+    background-color:burlywood;
+
+}
+
+.game-cell{
+    border:0px solid green;
+    background-color: gray;
+    position:absolute;
+}
+
+
+.game-num{
+    width: 0px;height: 0px;color:#fff;font-size:40px;position:absolute;
+    text-align: center;
+}
+
+.game-num-2{
+    background-color: #eee4da;color:#77be65;
+}
+
+
+.game-num-4{
+    background-color: #ede0c8;color:#77be65;
+}
+
+.game-num-8{
+    background-color: #f2b179;
+}
+
+.game-num-16{
+    background-color: #f59563;
+}
+
+.game-num-32{
+    background-color: #f67c5f;
+}
+
+.game-num-64{
+    background-color: #f65e3b;
+}
+
+.game-num-128{
+    background-color: #edcf72;
+    font-size: 35px;
+}
+
+.game-num-256{
+    background-color: #edcc61;
+    font-size: 35px;
+}
+
+.game-num-512{
+    background-color: #9c0;
+    font-size: 35px;
+}
+
+.game-num-1024{
+    background-color: #33b5e5;
+    font-size: 30px;
+}
+
+.game-num-2048{
+    background-color: #09c;
+    font-size: 30px;
+}
