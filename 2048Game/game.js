@@ -10,6 +10,8 @@
             var len =opt.len
             var size = opt.size
             var margin= opt.margin;
+
+            
             
 
             var view = new View(prefix,len,size,margin);
@@ -23,8 +25,8 @@
                 view.addNum(e.x,e.y,e.num)
             }
 
-            board.generate()
-            board.generate()
+            board.generate();
+            board.generate();
 
             board.onMove=function(e){
 
@@ -43,6 +45,14 @@
             }
 
             board.onMoveComplete = function(e){
+
+                if(!board.canMove()){
+                    this.isGameOver =true;
+                    setTimeout(function(){
+                        alert('本次得分: ' + this.score);
+                    },300);
+                }
+
                 if(e.moved){
                     setTimeout(function(){
                         board.generate();
@@ -83,6 +93,17 @@
                    
                 }
             )
+
+            function start(){
+                score=0;
+                view.updateScore(0);
+                view.cleanNum();
+                board.init();
+                board.generate();
+                board.generate();
+            }
+
+            $('#' + prefix + '_restart').click(start);
 
         }
 
@@ -168,6 +189,19 @@
             },
             winGame:function(){
                 alert('win game');
+            },
+            win:function(){
+                $('#' + this.prefix + '_over_info').html('<p>你胜利了</p>');
+                $('#' + this.prefix + '_over').removeClass(this.prefix + '-hide');
+            },
+            over:function(){
+                $('#' + this.prefix + '_over_info').html('<p>本次得分</p><p>' + this.score + '</p>');
+                $('#' + this.prefix + '_over').removeClass(this.prefix + '-hide');
+            },
+            cleanNum:function(){
+                this.nums={};
+                $('#' + this.prefix + '_over').addClass(this.prefix  +'-hide')
+                $('.'  + this.prefix + '-num').remove();
             }
         }
 
@@ -349,6 +383,26 @@
 
             },
             onMoveComplete:function(){
+
+            },
+            canMove:function(){
+                for(var x=0,arr=this.arr,len=arr.length;x<len;++x){
+                    for(var y=0;y<len;++y){
+                        if(arr[x][y]===0){
+                            return true;
+                        }
+
+                        var curr= arr[x][y];
+                        var right = arr[x][y+1];
+                        var down= arr[x+1]?arr[x+1][y]:null;
+
+                        if(right ===curr || down===curr){
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
 
             }
 
